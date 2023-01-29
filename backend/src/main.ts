@@ -5,9 +5,9 @@ const whitelist = ["http://localhost:3000", "http://frontend:3000"];
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // I need to enable CORS to allow the frontend calls
   app.enableCors({
     origin: function (origin, callback) {
-      console.log(`Checking CORS for ${origin}...`);
       if (!origin || whitelist.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
